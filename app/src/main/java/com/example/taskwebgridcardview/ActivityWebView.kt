@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -23,9 +24,13 @@ class ActivityWebView : AppCompatActivity() {
         setSupportActionBar(toolbarView)
 webView = findViewById(R.id.webView)
 
-        val url = intent.getStringExtra("url")
-        webView.settings.javaScriptEnabled = true
-        webView.loadUrl(url ?: "https://www.google.com")
+        webView.webViewClient = WebViewClient()
+        //val url = intent.getStringExtra("url")
+        val url = intent.getStringExtra("URL")
+        webView.loadUrl(url.toString())
+
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

@@ -1,6 +1,7 @@
 package com.example.taskwebgridcardview
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -19,8 +20,9 @@ class MainActivity : AppCompatActivity() {
 private lateinit var toolbar: Toolbar
 private lateinit var GridView: GridView
     private var websites = mutableListOf(
-        GridViewModel("http://www.yandex.ru", R.drawable.ic_launcher_background),
-        GridViewModel("http://www.gismeteo.ru", R.drawable.ic_launcher_foreground)
+        GridViewModel("http://www.yandex.ru", R.drawable.ya),
+        GridViewModel("http://www.gismeteo.ru", R.drawable.ic_launcher_foreground),
+         GridViewModel("https://www.championat.com", R.drawable.ic_launcher_foreground)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +38,7 @@ GridView.onItemClickListener=AdapterView.OnItemClickListener{_,_,position, _ ->
     val intent = Intent(this, ActivityWebView::class.java)
     intent.putExtra("url", websites[position].url)
     startActivity(intent)
+    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(websites[position].url)))
 }
 
 
